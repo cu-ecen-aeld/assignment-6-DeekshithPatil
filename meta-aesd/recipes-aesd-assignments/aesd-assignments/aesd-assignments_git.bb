@@ -8,7 +8,7 @@ SRC_URI = "git://git@github.com/cu-ecen-aeld/assignments-3-and-later-DeekshithPa
 
 PV = "1.0+git${SRCPV}"
 # TODO: set to reference a specific commit hash in your assignment repo
-SRCREV = "18a85a8a982f7f4d81159b119ea32cb74f695661"
+SRCREV = "68048be50292ddf66223be86664dcfc89c9ce571"
 # This sets your staging directory based on WORKDIR, where WORKDIR is defined at
 # https://www.yoctoproject.org/docs/latest/ref-manual/ref-manual.html#var-WORKDIR
 # We reference the "server" directory here to build from the "server" directory
@@ -22,7 +22,7 @@ FILES_${PN} += "${bindir}/aesdsocket"
 TARGET_LDFLAGS += "-pthread -lrt"
 
 INITSCRIPT_PACKAGES = "${PN}"
-INITSCRIPT_NAME_${PN} = "aesdsocket"
+INITSCRIPT_NAME_${PN} = "aesdsocket-start-stop.sh "
 inherit update-rc.d
 
 RDEPENDS_${PN} = "libgcc"
@@ -47,5 +47,5 @@ do_install () {
 	install -d ${D}${bindir}
 	install -m 0755 ${S}/aesdsocket ${D}${bindir}/
 	install -d ${D}${sysconfdir}/init.d
-	install -m 0755 ${S}/aesdsocket ${D}${sysconfdir}/init.d
+	install -m 0755 ${S}/aesdsocket-start-stop.sh  ${D}${sysconfdir}/init.d
 }
